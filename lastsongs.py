@@ -37,3 +37,27 @@ class LastParser(object):
 
     def get_title(self):
         return self.get_titles(1)[0]
+
+
+def print_songs(user, count=2):
+    try:
+        parser = LastParser(user)
+    except IOError:
+        print("Błąd połączenia")
+    else:
+        for i, title in enumerate(parser.get_titles(count)):
+            print("{0}. {1}".format(i + 1, title.encode("utf-8")))
+
+
+def print_help():
+    print("lastsongs.py <username> <count>")
+
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) == 1 or sys.argv[1] == "-h" or sys.argv[1] == "--help":
+        print_help()
+    elif len(sys.argv) == 2:
+        print_songs(sys.argv[1])
+    else:
+        print_songs(sys.argv[1], int(sys.argv[2]))
