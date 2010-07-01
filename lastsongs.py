@@ -20,9 +20,7 @@ class LastParser(object):
             for e in item:
                 d[e.tag] = e.text
             l.append(d)
-            if i + 1 == count:
-                break
-        return l
+        return l[:count]
     
     def get_song(self):
         return self.get_songs(1)[0]
@@ -31,9 +29,7 @@ class LastParser(object):
         l = []
         for i, title in enumerate(self.tree.getiterator("title")):
             l.append(title.text)
-            if i == count:
-                break
-        return l[1:]
+        return l[1:count + 1] # [1:.. usuwa tytuł rssa
 
     def get_title(self):
         return self.get_titles(1)[0]
