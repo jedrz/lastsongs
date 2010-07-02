@@ -15,7 +15,7 @@ class LastParser(object):
 
     def get_songs(self, count=10):
         l = []
-        for i, item in enumerate(self.tree.getiterator("item")):
+        for item in self.tree.getiterator("item"):
             d = {}
             for e in item:
                 d[e.tag] = e.text
@@ -26,9 +26,7 @@ class LastParser(object):
         return self.get_songs(1)[0]
 
     def get_titles(self, count=10):
-        l = []
-        for i, title in enumerate(self.tree.getiterator("title")):
-            l.append(title.text)
+        l = [title.text for title in self.tree.getiterator("title")]
         return l[1:count + 1] # [1:.. usuwa tytuł rssa
 
     def get_title(self):
