@@ -27,19 +27,15 @@ class LastParser(object):
 
     def get_titles(self, count=10):
         l = [title.text for title in self.tree.getiterator("title")]
-        return l[1:count + 1] # [1:.. usuwa tytuł rssa
+        return l[1:count + 1] # removing rss title
 
     def get_title(self):
         return self.get_titles(1)[0]
 
 
 def print_songs(user, count=2):
-    try:
-        parser = LastParser(user)
-    except IOError:
-        print("Błąd połączenia")
-    else:
-        for i, title in enumerate(parser.get_titles(count)):
+    parser = LastParser(user)
+    for i, title in enumerate(parser.get_titles(count)):
             print("{0}. {1}".format(i + 1, title.encode("utf-8")))
 
 

@@ -1,2 +1,6 @@
-Wyświetla ostatnio scrobblowanie utwory
-lastsongs.py <nazwa użytkownika> <ilość utworów (max 10)>
+Shows last scrobbled songs from Last.fm
+
+Python 2.x required.
+
+Usage:
+lastsongs.py <username> [count_of_songs (max 10)]
